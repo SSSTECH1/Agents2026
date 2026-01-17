@@ -9,32 +9,32 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="https://www.google.com/s2/favicons?domain=github.com">
 
   <style>
     :root{
-      --bg:#070A12;
-      --panel:rgba(255,255,255,.05);
-      --stroke:rgba(255,255,255,.10);
-      --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.70);
-      --muted2:rgba(255,255,255,.55);
-      --accent:#7C5CFF;
+      --bg: #070A12;
+      --panel: rgba(255,255,255,.05);
+      --stroke: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --muted2: rgba(255,255,255,.55);
+      --accent: #7C5CFF;
       --accent2:#2EE59D;
-      --radius:18px;
-      --shadow:0 26px 70px rgba(0,0,0,.55);
+      --radius: 18px;
+      --shadow: 0 26px 70px rgba(0,0,0,.55);
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--text);
-      background:var(--bg);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
       overflow-x:hidden;
     }
 
+    /* very subtle background grid */
     .bggrid{
       position:fixed; inset:0; pointer-events:none; z-index:-1;
       background:
@@ -42,17 +42,18 @@
         radial-gradient(900px 520px at 85% 10%, rgba(46,229,157,.10), transparent 60%),
         linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size:auto, auto, 56px 56px, 56px 56px;
+      background-size: auto, auto, 56px 56px, 56px 56px;
       opacity:.55;
     }
 
     a{color:inherit;text-decoration:none}
     .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
 
+    /* header */
     header{
       position:sticky; top:0; z-index:20;
-      backdrop-filter:blur(10px);
-      background:rgba(7,10,18,.65);
+      backdrop-filter: blur(10px);
+      background: rgba(7,10,18,.65);
       border-bottom:1px solid rgba(255,255,255,.08);
     }
     .hrow{
@@ -62,8 +63,8 @@
     .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px}
     .mark{
       width:34px;height:34px;border-radius:12px;
-      background:linear-gradient(135deg, rgba(124,92,255,1), rgba(46,229,157,1));
-      box-shadow:0 18px 50px rgba(124,92,255,.16);
+      background: linear-gradient(135deg, rgba(124,92,255,1), rgba(46,229,157,1));
+      box-shadow: 0 18px 50px rgba(124,92,255,.16);
     }
     nav{display:flex; gap:16px; align-items:center}
     nav a{font-size:14px;font-weight:600;color:var(--muted)}
@@ -73,106 +74,337 @@
       display:inline-flex; align-items:center; justify-content:center;
       padding:11px 14px; border-radius:14px;
       border:1px solid var(--stroke);
-      background:rgba(255,255,255,.04);
+      background: rgba(255,255,255,.04);
       font-weight:700; font-size:14px;
-      transition:transform .15s ease, background .15s ease, border-color .15s ease;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
     }
-    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.16)}
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.16)}
     .btn.primary{
-      border-color:rgba(124,92,255,.35);
-      background:linear-gradient(135deg, rgba(124,92,255,.95), rgba(46,229,157,.70));
-      box-shadow:0 18px 60px rgba(124,92,255,.16);
+      border-color: rgba(124,92,255,.35);
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(46,229,157,.70));
+      box-shadow: 0 18px 60px rgba(124,92,255,.16);
+    }
+    .btn.secondary{
+      border-color: rgba(46,229,157,.35);
+      background: rgba(46,229,157,.10);
     }
 
+    /* hero */
     .hero{padding:68px 0 22px}
-    .grid{display:grid; grid-template-columns:1.12fr .88fr; gap:20px; align-items:center}
+    .grid{display:grid; grid-template-columns: 1.12fr .88fr; gap:20px; align-items:center}
 
     .tag{
       display:inline-flex; align-items:center; gap:10px;
       padding:8px 12px; border-radius:999px;
       border:1px solid var(--stroke);
-      background:rgba(255,255,255,.03);
-      color:var(--muted);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
       font-weight:700;
       font-size:13px;
     }
-    .dot{width:8px;height:8px;border-radius:999px;background:var(--accent2); box-shadow:0 0 0 6px rgba(46,229,157,.10)}
+    .dot{width:8px;height:8px;border-radius:999px;background: var(--accent2); box-shadow: 0 0 0 6px rgba(46,229,157,.10)}
 
     h1{
       margin:14px 0 12px;
-      font-size:clamp(34px, 4.4vw, 56px);
+      font-size: clamp(34px, 4.4vw, 56px);
       line-height:1.03;
-      letter-spacing:-0.02em;
+      letter-spacing:-.9px;
     }
-    p{margin:0 0 18px; color:var(--muted); font-size:16px; line-height:1.6}
-    .card{
-      border:1px solid var(--stroke);
-      background:var(--panel);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:18px;
-      min-height:220px;
+    .sub{
+      margin:0;
+      color: var(--muted);
+      font-size:16px;
+      line-height:1.75;
+      max-width: 70ch;
     }
 
-    @media (max-width: 860px){
-      .grid{grid-template-columns:1fr}
+    .actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
+    .proof{
+      margin-top:14px;
+      display:flex; gap:10px; flex-wrap:wrap;
+      color: var(--muted2); font-weight:600; font-size:13px;
+    }
+    .chip{
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+    }
+
+    /* ultra-simple modern "image" */
+    .art{
+      position:relative;
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      min-height: 360px;
+    }
+    .orb{
+      position:absolute; inset:-40%;
+      background:
+        radial-gradient(circle at 35% 35%, rgba(124,92,255,.35), transparent 48%),
+        radial-gradient(circle at 70% 40%, rgba(46,229,157,.22), transparent 46%),
+        radial-gradient(circle at 55% 70%, rgba(255,255,255,.10), transparent 52%);
+      filter: blur(18px);
+      opacity:.95;
+    }
+    .artinner{
+      position:relative;
+      height:100%;
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .minihead{
+      display:flex; align-items:center; justify-content:space-between;
+      color: rgba(255,255,255,.75);
+      font-weight:700; font-size:13px;
+    }
+    .pill{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.25);
+      color: rgba(255,255,255,.65);
+    }
+    .artcopy{
+      margin-top:12px;
+      padding:14px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+    }
+    .artcopy b{display:block; font-size:15px; margin-bottom:6px}
+    .artcopy p{margin:0; color: var(--muted); font-size:13px; line-height:1.6}
+
+    /* sections */
+    .section{padding:34px 0}
+    .h2{margin:0 0 8px; font-size: clamp(20px, 2vw, 28px); letter-spacing:-.35px}
+    .lead{margin:0; color: var(--muted); line-height:1.7; max-width: 80ch}
+
+    .cards{margin-top:16px; display:grid; grid-template-columns: repeat(3, 1fr); gap:12px}
+    .card{
+      padding:14px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+    }
+    .card h3{margin:0 0 6px; font-size:15px}
+    .card p{margin:0; color: var(--muted); font-size:13px; line-height:1.6}
+
+    .cta{
+      margin-top:16px;
+      padding:18px;
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+    }
+
+    .footer{
+      margin-top:22px;
+      padding:22px 0 40px;
+      border-top:1px solid rgba(255,255,255,.08);
+      color: rgba(255,255,255,.55);
+      font-size:13px;
+    }
+
+    @media (max-width: 960px){
       nav{display:none}
-      .hero{padding:44px 0 18px}
+      .grid{grid-template-columns: 1fr}
+      .art{min-height: 300px}
+      .cards{grid-template-columns:1fr}
     }
   </style>
 </head>
 
 <body>
-  <div class="bggrid"></div>
+  <div class="bggrid" aria-hidden="true"></div>
 
   <header>
     <div class="wrap hrow">
       <div class="brand">
-        <div class="mark"></div>
+        <div class="mark" aria-hidden="true"></div>
         <div>Flowgents</div>
       </div>
-      <nav>
+
+      <nav aria-label="Primary">
+        <a href="#services">Services</a>
         <a href="#usecases">Use cases</a>
-        <a href="#process">Process</a>
         <a href="#contact">Contact</a>
       </nav>
-      <a class="btn primary" href="#contact">Get a demo</a>
+
+<a class="btn primary" href="YOUR_GOOGLE_FORM_LINK" target="_blank" rel="noopener noreferrer">
+  Book a Free Demo
+</a>
+
     </div>
   </header>
 
-  <main class="wrap hero">
-    <div class="grid">
-      <div>
-        <div class="tag"><span class="dot"></span> Custom AI agents & automations</div>
-        <h1>Turn leads into customers—automatically.</h1>
-        <p>We build fast, reliable agents that capture leads, answer FAQs, qualify prospects, and run workflows across your tools.</p>
-        <div style="display:flex; gap:10px; flex-wrap:wrap">
-          <a class="btn primary" href="#contact">Start a project</a>
-          <a class="btn" href="#usecases">See use cases</a>
-        </div>
-      </div>
+  <main>
+    <section class="hero">
+      <div class="wrap grid">
+        <div>
+          <div class="tag"><span class="dot"></span> Custom AI Agents • Automations • Integrations</div>
 
-      <div class="card">
-        <div style="font-weight:800; margin-bottom:6px">Quick demo placeholder</div>
-        <div style="color:var(--muted2); font-size:14px; line-height:1.6">
-          If your old page was blank, it was likely missing closing tags/braces.
-          This file is complete and should always render on GitHub Pages.
-        </div>
-      </div>
-    </div>
+          <h1>
+            Turn your business into an
+            <span style="background:linear-gradient(135deg, rgba(124,92,255,1), rgba(46,229,157,1));
+                         -webkit-background-clip:text;background-clip:text;color:transparent;">
+              automated machine
+            </span>.
+          </h1>
 
-    <section id="usecases" style="padding:28px 0 10px">
-      <h2 style="margin:0 0 10px">Popular use cases</h2>
-      <p style="margin:0; color:var(--muted2)">Lead capture • E-commerce support • Appointment booking • Internal ops automations</p>
+          <p class="sub">
+            We build modern AI agents and workflow automations that handle real work:
+            capturing leads, answering customers, routing tickets, monitoring systems, generating reports,
+            and connecting your tools end-to-end.
+          </p>
+
+<a class="btn primary"
+   href="https://forms.gle/y6Pe9hAc2CZfdVL58"
+   target="_blank"
+   rel="noopener noreferrer">
+  Free Setup Plan
+</a>
+
+
+  <a class="btn"
+     href="https://github.com/SSSTECH1/Flowgents"
+     target="_blank"
+     rel="noreferrer">
+    View GitHub
+  </a>
+</div>
+
+
+
+          <div class="proof">
+            <span class="chip">⚡ Fast delivery</span>
+            <span class="chip">🧩 Zapier / Make / n8n</span>
+            <span class="chip">🔒 Low-cost hosting</span>
+          </div>
+        </div>
+
+        <aside class="art" aria-label="Simple modern visual">
+          <div class="orb" aria-hidden="true"></div>
+          <div class="artinner">
+            <div class="minihead">
+              <span>Automation Studio</span>
+              <span class="pill">Flowgents • Live</span>
+            </div>
+
+            <div class="artcopy">
+              <b>What I deliver</b>
+              <p>
+                A working agent + automation that connects your tools and produces measurable outcomes.
+                Clean documentation. Easy handoff. Ready to expand.
+              </p>
+            </div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <span class="chip">Leads → CRM</span>
+              <span class="chip">Support → Answers</span>
+              <span class="chip">Alerts → Slack</span>
+              <span class="chip">Reports → Email</span>
+            </div>
+          </div>
+        </aside>
+      </div>
     </section>
 
-    <section id="contact" style="padding:22px 0 70px">
-      <h2 style="margin:0 0 10px">Contact</h2>
-      <p style="margin:0 0 12px">Hook this button to your Google Form.</p>
-      <a class="btn primary" href="https://docs.google.com/forms/d/1e9woKd3dXO3Ehd65E0Hx2dZm80fhRaVqa5Gzkw0zCeA/viewform" target="_blank" rel="noreferrer">
-        Open intake form
-      </a>
+    <section class="section" id="services">
+      <div class="wrap">
+        <h2 class="h2">Services</h2>
+        <p class="lead">
+          Simple packages that make it easy to say “yes”. We can build a new custom agent, improve an existing one,
+          or automate any workflow end-to-end.
+        </p>
+
+        <div class="cards">
+          <div class="card">
+            <h3>Custom AI Agent</h3>
+            <p>Lead qualification, FAQ support, internal assistant, or content/ops agent—built for your niche.</p>
+          </div>
+          <div class="card">
+            <h3>Workflow Automation</h3>
+            <p>Connect tools like forms, email, CRM, Sheets, Slack, and APIs using Zapier / Make / n8n.</p>
+          </div>
+          <div class="card">
+            <h3>Monitoring + Reporting</h3>
+            <p>Uptime/error alerts, daily summaries, weekly KPI reports—so you always know what’s happening.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="usecases">
+      <div class="wrap">
+        <h2 class="h2">All new possible use cases</h2>
+        <p class="lead">
+          If it’s repetitive, it’s automatable. Here are examples clients love—pick one and I’ll tailor it.
+        </p>
+
+        <div class="cards">
+          <div class="card">
+            <h3>Lead Capture → Appointment Booking</h3>
+            <p>Website form → qualification → calendar booking → follow-up sequence → CRM update.</p>
+          </div>
+          <div class="card">
+            <h3>Customer Support Autopilot</h3>
+            <p>FAQ + policy answers, ticket triage, refund routing, escalation rules, and response drafts.</p>
+          </div>
+          <div class="card">
+            <h3>Business Ops Assistant</h3>
+            <p>Summarize calls, generate proposals, create tasks, update docs, and send weekly progress reports.</p>
+          </div>
+          <div class="card">
+            <h3>Website/App Monitoring</h3>
+            <p>Alerts when uptime drops, errors spike, or pages slow down—notifications to Slack/SMS/email.</p>
+          </div>
+          <div class="card">
+            <h3>Sales + Outreach Automation</h3>
+            <p>Prospect list → enrichment → personalized outreach → replies to CRM → next actions.</p>
+          </div>
+          <div class="card">
+            <h3>Content + Marketing Engine</h3>
+            <p>Turn ideas into posts, schedule content, track engagement, and report what’s working.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="wrap">
+        <div class="cta">
+          <h2 class="h2" style="margin-bottom:8px;">Get your free setup plan</h2>
+          <p class="lead" style="margin-bottom:14px;">
+            Tell me your niche + goal + tools. I’ll reply with the simplest agent/automation plan you can launch fast.
+          </p>
+
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a class="btn primary"
+               href="mailto:agents2026.sss@gmail.com?subject=Flowgents%20-%20Free%20Setup%20Plan&body=Hi%2C%20I%20want%20a%20free%20setup%20plan.%0A%0ANiche%3A%20%0AGoal%3A%20%0ATools%20(Zapier%2FMake%2Fn8n)%3A%20%0A%0AWebsite%20(if%20any)%3A%20">
+              Email me
+            </a>
+            <a class="btn" href="https://github.com/SSSTECH1/Flowgents" target="_blank" rel="noreferrer">See the repo</a>
+          </div>
+
+          <div class="footer">
+            © <span id="y"></span> Flowgents • Built on GitHub Pages
+          </div>
+        </div>
+      </div>
     </section>
   </main>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
