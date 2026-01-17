@@ -34,7 +34,6 @@
       overflow-x:hidden;
     }
 
-    /* very subtle background grid */
     .bggrid{
       position:fixed; inset:0; pointer-events:none; z-index:-1;
       background:
@@ -49,7 +48,6 @@
     a{color:inherit;text-decoration:none}
     .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
 
-    /* header */
     header{
       position:sticky; top:0; z-index:20;
       backdrop-filter: blur(10px);
@@ -84,14 +82,16 @@
       background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(46,229,157,.70));
       box-shadow: 0 18px 60px rgba(124,92,255,.16);
     }
-    .btn.secondary{
-      border-color: rgba(46,229,157,.35);
-      background: rgba(46,229,157,.10);
-    }
 
     /* hero */
     .hero{padding:68px 0 22px}
-    .grid{display:grid; grid-template-columns: 1.12fr .88fr; gap:20px; align-items:center}
+    /* CHANGE: align-items:start so right tile sits top-right */
+    .grid{
+      display:grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap:20px;
+      align-items:start;
+    }
 
     .tag{
       display:inline-flex; align-items:center; gap:10px;
@@ -131,7 +131,7 @@
       background: rgba(255,255,255,.02);
     }
 
-    /* ultra-simple modern "image" */
+    /* right tile */
     .art{
       position:relative;
       border-radius: var(--radius);
@@ -239,57 +239,58 @@
         <a href="#contact">Contact</a>
       </nav>
 
-<a class="btn primary" href="https://forms.gle/NA1uc7chzKUPEDfX8" target="_blank" rel="noopener noreferrer">
-  Book a Free Demo
-</a>
-
+      <a class="btn primary" href="https://forms.gle/NA1uc7chzKUPEDfX8" target="_blank" rel="noopener noreferrer">
+        Book a Free Demo
+      </a>
     </div>
   </header>
 
   <main>
     <section class="hero">
       <div class="wrap grid">
+
+        <!-- LEFT -->
         <div>
-          <div>
-  <div class="tag"><span class="dot"></span> Custom AI Agents • Automations • Integrations</div>
+          <div class="tag"><span class="dot"></span> Custom AI Agents • Automations • Integrations</div>
 
-  <h1>
-    Turn your business into an
-    <span style="background:linear-gradient(135deg, rgba(124,92,255,1), rgba(46,229,157,1));
-                 -webkit-background-clip:text;background-clip:text;color:transparent;">
-      automated machine
-    </span>.
-  </h1>
+          <h1>
+            Turn your business into an
+            <span style="background:linear-gradient(135deg, rgba(124,92,255,1), rgba(46,229,157,1));
+                         -webkit-background-clip:text;background-clip:text;color:transparent;">
+              automated machine
+            </span>.
+          </h1>
 
-  <p class="sub">
-    We build modern AI agents and workflow automations that handle real work:
-    capturing leads, answering customers, routing tickets, monitoring systems, generating reports,
-    and connecting your tools end-to-end.
-  </p>
+          <p class="sub">
+            We build modern AI agents and workflow automations that handle real work:
+            capturing leads, answering customers, routing tickets, monitoring systems, generating reports,
+            and connecting your tools end-to-end.
+          </p>
 
-  <div class="actions">
-    <a class="btn primary"
-       href="https://forms.gle/y6Pe9hAc2CZfdVL58"
-       target="_blank"
-       rel="noopener noreferrer">
-      Free Setup Plan
-    </a>
+          <div class="actions">
+            <a class="btn primary"
+               href="https://forms.gle/y6Pe9hAc2CZfdVL58"
+               target="_blank"
+               rel="noopener noreferrer">
+              Free Setup Plan
+            </a>
 
-    <a class="btn"
-       href="https://github.com/SSSTECH1/Flowgents"
-       target="_blank"
-       rel="noreferrer">
-      View GitHub
-    </a>
-  </div>
+            <a class="btn"
+               href="https://github.com/SSSTECH1/Flowgents"
+               target="_blank"
+               rel="noreferrer">
+              View GitHub
+            </a>
+          </div>
 
-  <div class="proof">
-    <span class="chip">⚡ Fast delivery</span>
-    <span class="chip">🧩 Zapier / Make / n8n</span>
-    <span class="chip">🔒 Low-cost hosting</span>
-  </div>
-</div>
+          <div class="proof">
+            <span class="chip">⚡ Fast delivery</span>
+            <span class="chip">🧩 Zapier / Make / n8n</span>
+            <span class="chip">🔒 Low-cost hosting</span>
+          </div>
+        </div>
 
+        <!-- RIGHT (TOP-RIGHT) -->
         <aside class="art" aria-label="Simple modern visual">
           <div class="orb" aria-hidden="true"></div>
           <div class="artinner">
@@ -314,6 +315,7 @@
             </div>
           </div>
         </aside>
+
       </div>
     </section>
 
