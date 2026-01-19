@@ -407,5 +407,24 @@
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
   </script>
+
+  <button onclick="testAI()">Ask AI</button>
+<pre id="output"></pre>
+
+<script>
+async function testAI() {
+  const res = await fetch("https://chatagent1.agents2026-sss.workers.dev", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      message: "Explain what Flowgent does in one sentence"
+    })
+  });
+
+  const data = await res.json();
+  document.getElementById("output").textContent = data.reply;
+}
+</script>
+
 </body>
 </html>
