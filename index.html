@@ -406,24 +406,34 @@
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
   </script>
-
-  <button onclick="testAI()">Ask AI</button>
+  </main>
+<button id="askBtn">Ask AI</button>
 <pre id="output"></pre>
 
 <script>
-async function testAI() {
-  const res = await fetch("https://chatagent1.agents2026-sss.workers.dev", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      message: "Explain what Flowgent does in one sentence"
-    })
-  });
+document.getElementById("askBtn").addEventListener("click", async () => {
+  const out = document.getElementById("output");
+  out.textContent = "Loading...";
 
-  const data = await res.json();
-  document.getElementById("output").textContent = data.reply;
-}
+  try {
+    const res = await fetch("https://chatagent1.agents2026-sss.workers.dev", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: "Explain what Flowgent does in one sentence" })
+    });
+
+    const text = await res.text(); // read raw first
+    if (!res.ok) throw new Error(`HTTP ${res.status}: ${text}`);
+
+    const data = JSON.parse(text);
+    out.textContent = data.reply ?? "No reply field returned.";
+  } catch (e) {
+    out.textContent = "Error: " + e.message;
+    console.error(e);
+  }
+});
 </script>
-  </main>
+
+
 </body>
 </html>
