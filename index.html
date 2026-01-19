@@ -416,23 +416,20 @@ document.getElementById("askBtn").addEventListener("click", async () => {
   out.textContent = "Loading...";
 
   try {
-    const res = await fetch("https://chatagent1.agents2026-sss.workers.dev", {
+    const res = await fetch("https://YOUR-WORKER-URL.workers.dev", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: "Explain what Flowgent does in one sentence" })
+      body: JSON.stringify({ message: "Explain what Flowgent does in one sentence." })
     });
 
-    const text = await res.text(); // read raw first
-    if (!res.ok) throw new Error(`HTTP ${res.status}: ${text}`);
-
-    const data = JSON.parse(text);
-    out.textContent = data.reply ?? "No reply field returned.";
+    const text = await res.text();
+    out.textContent = text; // show raw response
   } catch (e) {
-    out.textContent = "Error: " + e.message;
-    console.error(e);
+    out.textContent = "Fetch error: " + e.message;
   }
 });
 </script>
+
 
 
 </body>
