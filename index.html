@@ -341,6 +341,7 @@
         <a href="#services">Services</a>
         <a href="#usecases">Use cases</a>
         <a href="#contact">Contact</a>
+        <a href="#upload">Upload Demo</a>
       </nav>
       <a class="btn primary"
          href="https://forms.gle/MV3GuU4VMu9dFHo47"
@@ -452,6 +453,83 @@
       </div>
     </section>
 
+    <section class="section" id="upload">
+  <div class="wrap">
+    <h2 class="h2">Upload a document → get a system-ready file</h2>
+    <p class="lead">
+      Drop a PDF / DOCX / XLSX / TXT and we’ll extract the required fields and generate a clean output file
+      (CSV/Excel/report) you can submit to a partner system.
+    </p>
+
+    <div class="uploader">
+      <div class="urow">
+        <div class="uleft">
+          <div class="uhead">
+            <span class="ubadge"><span class="dot"></span> Live demo</span>
+            <span class="chip">Secure webhook</span>
+            <span class="chip">Auto-validation</span>
+          </div>
+
+          <div class="artcopy" style="margin:0;">
+            <b>What happens after upload</b>
+            <p>
+              We qualify the request, normalize data, validate required fields, then generate a partner-ready file.
+              You’ll receive the output by email (and we can also push to your CRM/system).
+            </p>
+          </div>
+
+          <div class="usteps">
+            <span class="chip">1) Upload</span>
+            <span class="chip">2) Extract</span>
+            <span class="chip">3) Validate</span>
+            <span class="chip">4) Generate</span>
+            <span class="chip">5) Deliver</span>
+          </div>
+
+          <p class="hint" style="margin-top:12px;">
+            Tip: Use a sample partner email + any attachment. If required fields are missing, you’ll get a “needs info”
+            response (so nothing breaks).
+          </p>
+        </div>
+
+        <form class="uform" id="uploadForm">
+          <div class="field">
+            <label for="uemail">Email to receive the output</label>
+            <input class="input" id="uemail" name="email" type="email" placeholder="you@company.com" required />
+          </div>
+
+          <div class="field">
+            <label for="ufile">Upload file (PDF, DOCX, XLSX, TXT)</label>
+            <input class="file" id="ufile" name="file" type="file"
+                   accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.txt" required />
+            <div class="hint">Max size depends on your Make.com plan. Start with files under 5–10 MB.</div>
+          </div>
+
+          <div class="field">
+            <label for="unotes">Optional notes (what output do you need?)</label>
+            <input class="input" id="unotes" name="notes" type="text"
+                   placeholder="Example: Partner template, CSV with specific columns, report summary…" />
+          </div>
+
+          <div class="ubtnrow">
+            <button class="btn primary small" type="submit" id="uploadBtn">
+              Upload & Generate
+            </button>
+            <a class="btn small" href="#contact">Need a custom format?</a>
+          </div>
+
+          <div class="ustatus" id="uploadStatus"></div>
+
+          <div class="hint">
+            By uploading, you confirm you have rights to share this document for processing.
+            Don’t upload secrets in the demo version.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
     <section class="section" id="usecases">
       <div class="wrap">
         <h2 class="h2">All new possible use cases</h2>
@@ -524,7 +602,60 @@
     document.getElementById("y").textContent = new Date().getFullYear();
   </script>
 
+  <script>
+  // ✅ Replace this with your Make.com "Custom webhook" URL
+  const MAKE_WEBHOOK_URL = "YOUR_MAKE_WEBHOOK_URL";
 
+  const form = document.getElementById("uploadForm");
+  const btn = document.getElementById("uploadBtn");
+  const statusBox = document.getElementById("uploadStatus");
+
+  function setStatus(msg, type){
+    statusBox.textContent = msg;
+    statusBox.className = "ustatus show" + (type ? " " + type : "");
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("uemail").value.trim();
+    const fileInput = document.getElementById("ufile");
+    const notes = document.getElementById("unotes").value.trim();
+
+    if (!fileInput.files || !fileInput.files[0]) {
+      setStatus("Please choose a file to upload.", "err");
+      return;
+    }
+
+    const fd = new FormData();
+    fd.append("email", email);
+    fd.append("notes", notes);
+    fd.append("file", fileInput.files[0]);
+
+    // UI: loading state
+    btn.classList.add("loading");
+    btn.innerHTML = '<span class="spin"></span>&nbsp;Uploading…';
+    setStatus("Uploading… Once processed, you’ll receive the output by email.", "");
+
+    try {
+      const res = await fetch(MAKE_WEBHOOK_URL, {
+        method: "POST",
+        body: fd
+      });
+
+      // Many Make webhooks return 200/204 quickly while processing continues
+      if (!res.ok) throw new Error("Upload failed. Please try again.");
+
+      setStatus("✅ Uploaded! Processing has started. You’ll receive the formatted output by email shortly.", "ok");
+      form.reset();
+    } catch (err) {
+      setStatus("❌ " + (err?.message || "Something went wrong. Please try again."), "err");
+    } finally {
+      btn.classList.remove("loading");
+      btn.textContent = "Upload & Generate";
+    }
+  });
 </script>
+
 </body>
 </html>
