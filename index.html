@@ -425,5 +425,26 @@
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
   </script>
+
+  <form id="uploadForm">
+  <input type="file" name="file" required />
+  <input type="email" name="email" placeholder="Your email" required />
+  <button type="submit">Upload & Process</button>
+</form>
+
+<script>
+  document.getElementById("uploadForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+
+    await fetch("https://hook.make.com/YOUR_WEBHOOK_ID", {
+      method: "POST",
+      body: formData
+    });
+
+    alert("File received. You’ll get the processed output by email.");
+  });
+</script>
 </body>
 </html>
